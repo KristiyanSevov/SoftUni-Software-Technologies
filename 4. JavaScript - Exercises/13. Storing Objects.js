@@ -9,10 +9,8 @@ function solution(arr) {
         people.push(person);
     }
     for (let person of people) {
-        for (let prop in person) {
-            if (person.hasOwnProperty(prop)) {
-                console.log(`${prop}: ${person[prop]}`)
-            }
+        for (let key of Object.keys(person)) {
+            console.log(`${key}: ${person[key]}`)
         }
     }
 }
