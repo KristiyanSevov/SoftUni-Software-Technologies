@@ -9,8 +9,10 @@ function solution(arr) {
         people.push(person);
     }
     for (let person of people) {
-        console.log(`Name: ${person["Name"]}`);
-        console.log(`Age: ${person.Age}`);
-        console.log(`Grade: ${person.Grade}`);
+        for (let prop in person) {
+            if (person.hasOwnProperty(prop)) {
+                console.log(`${prop}: ${person[prop]}`)
+            }
+        }
     }
 }
