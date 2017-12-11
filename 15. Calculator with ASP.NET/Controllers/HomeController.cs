@@ -1,30 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Calculator_CSharp.Models;
 using System.Web.Mvc;
+using System;
 
-namespace Calculator.Controllers
+namespace Calculator_CSharp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(Calculator calculator)
         {
-            return View();
+            return View(calculator);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Calculate(Calculator calculator)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            calculator.Result = CalculateResult(calculator);
+            return RedirectToAction("Index", calculator);
         }
 
-        public ActionResult Contact()
+        private decimal CalculateResult(Calculator calculator)
         {
-            ViewBag.Message = "Your contact page.";
+            decimal result = 0;
 
-            return View();
+            switch (calculator.Operator)
+            {
+                case "+":
+                    result = calculator.LeftOperand + calculator.RightOperand;
+                    break;
+                case "-":
+                    result = calculator.LeftOperand - calculator.RightOperand;
+                    break;
+                case "*":
+                    result = calculator.LeftOperand * calculator.RightOperand;
+                    break;
+                case "/":
+                    result = calculator.LeftOperand / calculator.RightOperand;
+                    break;
+                case "^":
+                    result = (decimal) Math.Pow((double)calculator.LeftOperand, (double)calculator.RightOperand);
+                    break;
+            }
+            return result;
         }
     }
 }

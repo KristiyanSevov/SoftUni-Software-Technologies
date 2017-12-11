@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Calculator
+namespace Calculator_CSharp
 {
     public class FilterConfig
     {
