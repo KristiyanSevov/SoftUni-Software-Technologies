@@ -14,18 +14,17 @@ public class TwentyFour {
             books.add(readBook(scan, authors));
         }
         authors.stream()
-                .distinct()
-                .sorted(Comparator.comparing((x) -> books.stream()
-                        .filter((y) -> y.getAuthor().equals(x))
-                        .mapToDouble(Book::getPrice)
-                        .sum(), Comparator.reverseOrder())
-                        .thenComparing(Object::toString))
-                .forEach((x) -> System.out.printf("%s -> %.2f%n", x,
-                        books.stream()
-                                .filter((y) -> y.getAuthor().equals(x))
-                                .mapToDouble(Book::getPrice)
-                                .sum())
-                );
+               .distinct()
+               .sorted(Comparator.comparing((x) -> books.stream()
+                                                         .filter((y) -> y.getAuthor().equals(x))
+                                                         .mapToDouble(Book::getPrice)
+                                                         .sum(), Comparator.reverseOrder())
+                                  .thenComparing(Object::toString))
+               .forEach((x) -> System.out.printf("%s -> %.2f%n", x,
+                                                 books.stream()
+                                                        .filter((y) -> y.getAuthor().equals(x))
+                                                        .mapToDouble(Book::getPrice)
+                                                        .sum()));
     }
 
     private static Book readBook(Scanner scan, ArrayList<String> authors) {
